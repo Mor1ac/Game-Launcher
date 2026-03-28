@@ -1,0 +1,285 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap");
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #181d2d;
+  font-family: "Inter", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===== КОНТЕЙНЕР ===== */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== ФОНОВАЯ КАРТИНКА ===== */
+.backgroundImg {
+  flex: 1;
+  background-image: url(images/cont.svg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: local;
+  position: relative;
+  min-height: 100vh;
+}
+/* Затемняющий оверлей на фоне */
+.backgroundImg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 60%, #181d2d 100%);
+}
+
+/* ===== ПАНЕЛЬ ЛОГИНА ===== */
+.login {
+  background-color: #181d2d;
+  color: white;
+  padding: clamp(24px, 4vw, 56px) clamp(24px, 4vw, 48px);
+  width: clamp(300px, 35vw, 440px);
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(8px, 1.2vh, 14px);
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== ЛОГО ===== */
+.logo {
+  background-image: url(images/Logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: clamp(56px, 7vw, 90px);
+  height: clamp(56px, 7vw, 90px);
+  margin-bottom: clamp(4px, 1vh, 12px);
+}
+
+/* ===== ЗАГОЛОВОК ===== */
+.login h2 {
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: white;
+  margin-bottom: clamp(2px, 0.5vh, 8px);
+}
+
+/* ===== ИНПУТЫ ===== */
+.login input[type="text"],
+.login input[type="password"] {
+  width: 100%;
+  padding: clamp(10px, 1.2vh, 14px) 16px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  background-color: #1e2539;
+  color: white;
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-family: "Inter", sans-serif;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+  border-color: #ffcc00;
+  background-color: #232b42;
+}
+.login input::placeholder {
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  font-size: clamp(11px, 0.9vw, 13px);
+  letter-spacing: 1px;
+}
+
+/* ===== КНОПКА CONFIRM ===== */
+.confirm {
+  width: 100%;
+  padding: clamp(10px, 1.3vh, 15px) 16px;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #0d1017;
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-weight: 800;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: background-color 0.2s, transform 0.15s;
+  display: block;
+  margin-top: clamp(2px, 0.5vh, 6px);
+}
+.confirm:hover {
+  background-color: #e6b800;
+  transform: translateY(-1px);
+}
+.confirm:active {
+  transform: translateY(0);
+}
+
+/* ===== ЧЕКБОКС ===== */
+.terms {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: start;
+  width: 100%;
+  margin-top: clamp(2px, 0.4vh, 6px);
+}
+.terms input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: #ffcc00;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.terms label {
+  font-size: clamp(11px, 0.9vw, 13px);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.45);
+  cursor: pointer;
+  text-align: left;
+}
+
+/* ===== РАЗДЕЛИТЕЛЬ ===== */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ffcc00, transparent);
+  margin: clamp(10px, 2vh, 24px) 0 clamp(6px, 1.2vh, 16px);
+  opacity: 0.5;
+}
+
+/* ===== АЛЬТЕРНАТИВНЫЙ ВХОД ===== */
+.alternative {
+  text-align: center;
+  width: 100%;
+}
+.alternative > p {
+  font-size: clamp(11px, 0.9vw, 13px);
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.5px;
+  margin-bottom: clamp(10px, 1.5vh, 16px);
+  text-transform: uppercase;
+}
+
+/* ===== СОЦСЕТИ ===== */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px, 1.5vw, 20px);
+  margin-bottom: clamp(10px, 1.8vh, 20px);
+}
+.social-icons img {
+  width: clamp(28px, 3vw, 38px);
+  height: clamp(28px, 3vw, 38px);
+  padding: clamp(7px, 0.8vw, 10px);
+  background-color: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  filter: brightness(0.85);
+}
+.social-icons img:hover {
+  background-color: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+  filter: brightness(1);
+}
+
+/* ===== ФУТЕР ===== */
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: clamp(16px, 2vw, 28px);
+  margin-top: clamp(10px, 1.5vh, 18px);
+}
+.footer a {
+  color: rgba(255,255,255,0.35);
+  font-size: clamp(11px, 0.9vw, 13px);
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  font-weight: 500;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  width: auto;
+  transition: color 0.2s;
+  letter-spacing: 0;
+}
+.footer a:hover {
+  color: #ffcc00;
+  text-decoration: none;
+  background: none;
+  transform: none;
+}
+
+/* ===== АДАПТИВ — планшет ===== */
+@media (max-width: 900px) {
+  .backgroundImg {
+    display: none;
+  }
+  .container {
+    justify-content: center;
+    align-items: center;
+    background-image: url(images/cont.svg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .login {
+    width: clamp(300px, 90vw, 440px);
+    border-radius: 16px;
+    background-color: rgba(24, 29, 45, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    padding: clamp(28px, 5vw, 48px) clamp(24px, 5vw, 44px);
+  }
+}
+
+/* ===== АДАПТИВ — маленький мобильник ===== */
+@media (max-width: 400px) {
+  .login {
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+}
+/* ===== ОШИБКИ ===== */
+.error-msg {
+  width: 100%;
+  font-size: clamp(11px, 0.9vw, 13px);
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  border-radius: 6px;
+  padding: 8px 12px;
+  text-align: center;
+  animation: fadeIn 0.2s ease;
+}
+.input-error {
+  border-color: #ff4d4d !important;
+  background-color: rgba(255, 77, 77, 0.07) !important;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

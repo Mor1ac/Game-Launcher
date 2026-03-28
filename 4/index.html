@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game In The Abyss</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="cont">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="name">Hello, Tina Park</div>
+
+      <div class="for">
+        <input type="text" placeholder="Search games..." class="for__search"/>
+        <div class="search__cont">
+          <div class="popul"><p>самое популярное</p></div>
+          <div class="search__card1 search__card"><img src="https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S2_1200x1600-773ea2de7951435e977ba5f5f6934442?resize=1&w=360&h=480&quality=medium" alt=""/><p>Valorant</p></div>
+          <div class="search__card__2 search__card"><img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg" alt=""/><p>Minecraft</p></div>
+          <div class="search__card__3 search__card"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1766010373" alt=""/><p>Dota 2</p></div>
+          <div class="search__card__4 search__card"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861" alt=""/><p>Counter-Strike 2</p></div>
+          <div class="search__card__5 search__card"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1731252354" alt=""/><p>Terraria</p></div>
+        </div>
+        <div class="img"></div>
+      </div>
+
+      <div class="ob">
+        <div class="burger-menu">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+        <div class="o">
+          <div class="img2 icon-btn" id="btnFriends"></div>
+          <div class="img3 icon-btn" id="btnNotif"></div>
+          <div class="img1 icon-btn" id="btnChat"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ОСНОВНОЙ БЛОК -->
+    <div class="obshiy">
+
+      <!-- ЛЕВАЯ ПАНЕЛЬ -->
+      <div class="left-cont">
+        <div class="ul">
+          <div class="f4">
+            <a class="im4" href="/game-launcher/2/index.html"></a>
+            <div class="im5"></div>
+            <a class="im6" href="/game-launcher/5/index.html"></a>
+            <div class="im7"></div>
+          </div>
+          <div class="im8" id="settingsBtn"></div>
+        </div>
+      </div>
+
+      <!-- ЦЕНТРАЛЬНАЯ ЧАСТЬ — поверх фона -->
+      <div class="mid-cont">
+        <div class="mid-top">Home &gt; Game Library &gt; Game In The Abyss</div>
+
+        <div class="mid-center">
+          <p class="p1">IN THE ABYSS</p>
+          <p class="p2">A solitary scientific diver wakes up in a futuristic apocalyptic world.</p>
+          <p class="p3">Art by Lucas Staniec</p>
+          <div class="btns-row">
+            <button class="play-btn">PLAY</button>
+            <button class="list-btn">ADD TO LIST</button>
+          </div>
+        </div>
+
+        <div class="mid-bottom">
+          <div class="mid-bottom-left">
+            <div class="btns-tags">
+              <button class="RPG">RPG</button>
+              <button class="APOCALYPTIC">APOCALYPTIC</button>
+              <button class="MULTIPLAYER">MULTIPLAYER</button>
+            </div>
+            <p class="friendsPlay">4+ FRIENDS PLAY THIS GAME</p>
+          </div>
+          <div class="mid-bottom-right">
+            <div class="arr-left"><img src="images/arrowLeft.svg" alt=""/></div>
+            <div class="im10"></div>
+            <div class="im11"></div>
+            <div class="arr-right"><img src="images/arrowRight.svg" alt=""/></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ПОПАП ИГР -->
+  <div class="game-popup-overlay" id="gamePopupOverlay">
+    <div class="game-popup">
+      <button class="game-popup__close" id="gamePopupClose">&#x2715;</button>
+      <div class="game-popup__cover"><img id="popupCover" src="" alt=""/><div class="game-popup__cover-gradient"></div></div>
+      <div class="game-popup__body">
+        <div class="game-popup__meta"><span class="game-popup__badge" id="popupBadge"></span><span class="game-popup__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+        <div class="game-popup__title" id="popupTitle"></div>
+        <div class="game-popup__tags" id="popupTags"></div>
+        <p class="game-popup__desc" id="popupDesc"></p>
+        <div class="game-popup__info-row">
+          <div class="game-popup__info-item"><span class="game-popup__info-label">Разработчик</span><span class="game-popup__info-value" id="popupDev"></span></div>
+          <div class="game-popup__divider"></div>
+          <div class="game-popup__info-item"><span class="game-popup__info-label">Дата выхода</span><span class="game-popup__info-value" id="popupDate"></span></div>
+          <div class="game-popup__divider"></div>
+          <div class="game-popup__info-item"><span class="game-popup__info-label">Цена</span><span class="game-popup__info-value game-popup__price" id="popupPrice"></span></div>
+          <div class="game-popup__divider"></div>
+        </div>
+        <a class="game-popup__btn" id="popupLink" href="#">Открыть страницу</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЧАТ -->
+  <div class="m2" id="panelChat">
+    <div class="m2__view" id="chatList">
+      <div class="m2__header"><p class="m2__title">Сообщения</p><button class="m2__new-chat">✏️</button></div>
+      <div class="m2__search-wrap"><input class="m2__search" type="text" placeholder="Поиск..."/></div>
+      <div class="m2__chats">
+        <div class="m2__chat-item m2__chat-item--unread" data-friend="ЧИТЕР777" data-avatar-class="m2__av--1" data-avatar-letter="Ч"><div class="m2__av m2__av--1">Ч<span class="m2__av-status m2__av-status--on"></span></div><div class="m2__chat-info"><div class="m2__chat-top"><p class="m2__chat-name">ЧИТЕР777</p><span class="m2__chat-time">2 мин</span></div><div class="m2__chat-bottom"><p class="m2__chat-last">gg ez братан 😂</p><span class="m2__unread-badge">2</span></div></div></div>
+        <div class="m2__chat-item" data-friend="Tomar753" data-avatar-class="m2__av--2" data-avatar-letter="T"><div class="m2__av m2__av--2">T<span class="m2__av-status m2__av-status--on"></span></div><div class="m2__chat-info"><div class="m2__chat-top"><p class="m2__chat-name">Tomar753</p><span class="m2__chat-time">18 мин</span></div><div class="m2__chat-bottom"><p class="m2__chat-last">идёшь на ранкед?</p></div></div></div>
+        <div class="m2__chat-item" data-friend="Ваня228" data-avatar-class="m2__av--3" data-avatar-letter="В"><div class="m2__av m2__av--3">В<span class="m2__av-status m2__av-status--on"></span></div><div class="m2__chat-info"><div class="m2__chat-top"><p class="m2__chat-name">Ваня228</p><span class="m2__chat-time">1 ч</span></div><div class="m2__chat-bottom"><p class="m2__chat-last">норм сессия была</p></div></div></div>
+      </div>
+    </div>
+    <div class="m2__view" id="chatOpen" style="display:none">
+      <div class="m2__chat-header"><button class="m2__back">←</button><div class="m2__av m2__av--1" id="chatAvatar">Ч<span class="m2__av-status m2__av-status--on"></span></div><div class="m2__chat-header-info"><p class="m2__chat-header-name" id="chatName">ЧИТЕР777</p><p class="m2__chat-header-status">онлайн</p></div></div>
+      <div class="m2__messages" id="chatMessages">
+        <div class="m2__msg m2__msg--in"><p>привет!</p><span>18:42</span></div>
+        <div class="m2__msg m2__msg--out"><p>норм, ты как?</p><span>18:43</span></div>
+        <div class="m2__msg m2__msg--in"><p>gg ez 😂</p><span>18:45</span></div>
+      </div>
+      <div class="m2__input-wrap"><input class="m2__input" type="text" placeholder="Написать..." id="chatInput"/><button class="m2__send" id="chatSend">➤</button></div>
+    </div>
+  </div>
+
+  <!-- ДРУЗЬЯ -->
+  <div class="m1" id="panelFriends">
+    <div class="m1__header"><p class="m1__title">Друзья</p><span class="m1__online-count">3 онлайн</span></div>
+    <div class="m1__search-wrap"><input class="m1__search" type="text" placeholder="Поиск друзей..."/></div>
+    <div class="m1__section-label">Онлайн</div>
+    <div class="m1__list">
+      <div class="m1__friend"><div class="m1__avatar m1__avatar--1"><span class="m1__status m1__status--online"></span></div><div class="m1__info"><p class="m1__name">ЧИТЕР777</p><p class="m1__activity">Играет в Valorant</p></div><button class="m1__invite">+</button></div>
+      <div class="m1__friend"><div class="m1__avatar m1__avatar--2"><span class="m1__status m1__status--online"></span></div><div class="m1__info"><p class="m1__name">Tomar753</p><p class="m1__activity">Играет в Dota 2</p></div><button class="m1__invite">+</button></div>
+      <div class="m1__friend"><div class="m1__avatar m1__avatar--3"><span class="m1__status m1__status--online"></span></div><div class="m1__info"><p class="m1__name">Ваня228</p><p class="m1__activity">В главном меню</p></div><button class="m1__invite">+</button></div>
+      <div class="m1__section-label">Оффлайн</div>
+      <div class="m1__friend m1__friend--offline"><div class="m1__avatar m1__avatar--4"><span class="m1__status m1__status--offline"></span></div><div class="m1__info"><p class="m1__name">ProGamer99</p><p class="m1__activity">Был 2 часа назад</p></div></div>
+    </div>
+    <button class="m1__add-friend">+ Добавить друга</button>
+  </div>
+
+  <!-- УВЕДОМЛЕНИЯ -->
+  <div class="m3" id="panelNotif">
+    <div class="m3__header"><p class="m3__title">Уведомления</p><button class="m3__clear">Очистить всё</button></div>
+    <div class="m3__list">
+      <div class="m3__item m3__item--unread"><div class="m3__icon m3__icon--friend"></div><div class="m3__content"><p class="m3__text"><span>ЧИТЕР777</span> принял заявку</p><p class="m3__time">2 мин назад</p></div><div class="m3__dot"></div></div>
+      <div class="m3__item m3__item--unread"><div class="m3__icon m3__icon--game"></div><div class="m3__content"><p class="m3__text"><span>Tomar753</span> приглашает в Valorant</p><p class="m3__time">15 мин назад</p></div><div class="m3__dot"></div></div>
+      <div class="m3__item"><div class="m3__icon m3__icon--update"></div><div class="m3__content"><p class="m3__text">Обновление <span>Dota 2</span></p><p class="m3__time">1 час назад</p></div></div>
+    </div>
+  </div>
+
+  <!-- ЛАУНЧЕР -->
+  <div class="launcher__container" id="launcherContainer">
+    <div class="launcher__title">Game Launcher</div>
+    <div class="launcher__content">
+      <div class="launcher__menu">
+        <button class="menu__item">Общие</button>
+        <button class="menu__item">Игры</button>
+        <button class="menu__item">Графика</button>
+        <button class="menu__item">Аккаунт</button>
+        <button class="menu__item">Звук</button>
+        <button class="menu__item">Сеть</button>
+        <button class="menu__item">Дополнительно</button>
+      </div>
+      <div class="launcher__settings-wrapper">
+        <div class="launcher__settings launcher__settings1"><button class="settings__tab">Общие настройки</button><div class="settings__option">Язык: русский</div><div class="settings__option">Тема: тёмная</div><div class="settings__option">Автозапуск: Вкл</div><div class="settings__option">Уведомления: Вкл</div></div>
+        <div class="launcher__settings launcher__settings2"><button class="settings__tab">Настройки игры</button><div class="settings__option">Автосохранение: Вкл</div><div class="settings__option">Подсказки: Выкл</div><div class="settings__option">Язык: русский</div><div class="settings__option">Сложность: Лёгкая</div></div>
+        <div class="launcher__settings launcher__settings3"><button class="settings__tab">Графика</button><div class="settings__option">Разрешение: Full HD</div><div class="settings__option">Режим: Окно</div><div class="settings__option">Качество: Среднее</div><div class="settings__option">Лимит FPS: Откл</div></div>
+        <div class="launcher__settings launcher__settings4"><button class="settings__tab">Аккаунт</button><div class="settings__option">Имя пользователя</div><div class="settings__option">Автовход: Вкл</div></div>
+        <div class="launcher__settings launcher__settings5"><button class="settings__tab">Звук</button><div class="settings__option">Громкость: 70%</div><div class="settings__option">Музыка: 40%</div><div class="settings__option">Эффекты: 30%</div><div class="settings__option">Фон: Вкл</div></div>
+        <div class="launcher__settings launcher__settings6"><button class="settings__tab">Сеть</button><div class="settings__option">Онлайн: Вкл</div><div class="settings__option">Сервер</div><div class="settings__option">Лимит трафика</div></div>
+        <div class="launcher__settings launcher__settings7"><button class="settings__tab">Дополнительно</button><div class="settings__option">Сворачивать в трей</div><div class="settings__option">Проверка обновлений</div><div class="settings__option">Очистка кэша</div><div class="settings__option">Логи</div></div>
+      </div>
+    </div>
+    <div class="launcher__actions">
+      <button class="action__button action__button--save">Сохранить</button>
+      <button class="action__button action__button--reset">Сбросить</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
