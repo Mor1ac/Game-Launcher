@@ -1,12 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap");
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -24,7 +27,7 @@ html, body {
 /* ===== ФОНОВАЯ КАРТИНКА ===== */
 .backgroundImg {
   flex: 1;
-  background-image: url(images/cont.svg);
+  background-image: url(./images/cont.svg);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -34,7 +37,7 @@ html, body {
 }
 /* Затемняющий оверлей на фоне */
 .backgroundImg::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(to right, transparent 60%, #181d2d 100%);
@@ -82,14 +85,16 @@ html, body {
 .login input[type="password"] {
   width: 100%;
   padding: clamp(10px, 1.2vh, 14px) 16px;
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 8px;
   background-color: #1e2539;
   color: white;
   font-size: clamp(13px, 1.1vw, 15px);
   font-family: "Inter", sans-serif;
   outline: none;
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 .login input[type="text"]:focus,
 .login input[type="password"]:focus {
@@ -97,7 +102,7 @@ html, body {
   background-color: #232b42;
 }
 .login input::placeholder {
-  color: rgba(255,255,255,0.3);
+  color: rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
   font-size: clamp(11px, 0.9vw, 13px);
   letter-spacing: 1px;
@@ -118,7 +123,9 @@ html, body {
   font-family: "Inter", sans-serif;
   text-align: center;
   letter-spacing: 2px;
-  transition: background-color 0.2s, transform 0.15s;
+  transition:
+    background-color 0.2s,
+    transform 0.15s;
   display: block;
   margin-top: clamp(2px, 0.5vh, 6px);
 }
@@ -150,7 +157,7 @@ html, body {
 .terms label {
   font-size: clamp(11px, 0.9vw, 13px);
   line-height: 1.5;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   cursor: pointer;
   text-align: left;
 }
@@ -171,7 +178,7 @@ html, body {
 }
 .alternative > p {
   font-size: clamp(11px, 0.9vw, 13px);
-  color: rgba(255,255,255,0.35);
+  color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.5px;
   margin-bottom: clamp(10px, 1.5vh, 16px);
   text-transform: uppercase;
@@ -188,15 +195,17 @@ html, body {
   width: clamp(28px, 3vw, 38px);
   height: clamp(28px, 3vw, 38px);
   padding: clamp(7px, 0.8vw, 10px);
-  background-color: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition:
+    background 0.2s,
+    transform 0.15s;
   filter: brightness(0.85);
 }
 .social-icons img:hover {
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
   filter: brightness(1);
 }
@@ -209,7 +218,7 @@ html, body {
   margin-top: clamp(10px, 1.5vh, 18px);
 }
 .footer a {
-  color: rgba(255,255,255,0.35);
+  color: rgba(255, 255, 255, 0.35);
   font-size: clamp(11px, 0.9vw, 13px);
   font-family: "Inter", sans-serif;
   text-decoration: none;
@@ -248,7 +257,7 @@ html, body {
     border-radius: 16px;
     background-color: rgba(24, 29, 45, 0.95);
     backdrop-filter: blur(12px);
-    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
     padding: clamp(28px, 5vw, 48px) clamp(24px, 5vw, 44px);
   }
 }
@@ -280,6 +289,12 @@ html, body {
   background-color: rgba(255, 77, 77, 0.07) !important;
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
