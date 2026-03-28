@@ -104,7 +104,7 @@ document.addEventListener("click", () => {
 
 // ===== ПОПАП ИГР =====
 const gameData = {
-  'search__card1':   { title:'VALORANT', cover:'https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S2_1200x1600-773ea2de7951435e977ba5f5f6934442?resize=1&w=720&h=480&quality=medium', badge:'Бесплатно', tags:['Шутер','Экшен','Многопользовательская'], desc:'Тактический шутер 5 на 5 от Riot Games.', dev:'Riot Games', date:'03.06.2020', price:'Бесплатно', link:'/game-launcher/4/index2.html' },
+  'search__card1':   { title:'VALORANT', cover:'https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S2_1200x1600-773ea2de7951435e977ba5f5f6934442?resize=1&w=720&h=480&quality=medium', badge:'Бесплатно', tags:['Шутер','Экшен','Многопользовательская'], desc:'Тактический шутер 5 на 5 от Riot Games.', dev:'Riot Games', date:'03.06.2020', price:'Бесплатно', link:'../Page4/index2.html' },
   'search__card__2': { title:'Minecraft', cover:'https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg', badge:'Платная', tags:['Песочница','Выживание','Крафт'], desc:'Исследуйте бесконечные миры и стройте что угодно.', dev:'Mojang Studios', date:'18.11.2011', price:'1 900 ₽', link:'/game-launcher/4/index2.html' },
   'search__card__3': { title:'Dota 2', cover:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1766010373', badge:'Бесплатно', tags:['MOBA','Стратегия','Командная'], desc:'Самая глубокая многопользовательская стратегия в мире.', dev:'Valve', date:'09.07.2013', price:'Бесплатно', link:'/game-launcher/4/index2.html' },
   'search__card__4': { title:'Counter-Strike 2', cover:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861', badge:'Бесплатно', tags:['Шутер','Экшен','Соревновательная'], desc:'Крупнейший технологический скачок в истории CS.', dev:'Valve', date:'27.09.2023', price:'Бесплатно', link:'/game-launcher/4/index2.html' },
@@ -123,6 +123,7 @@ function openGamePopup(cls) {
   document.getElementById("popupDate").textContent = d.date;
   document.getElementById("popupPrice").textContent = d.price;
   document.getElementById("popupLink").href = d.link;
+  console.log(d.link)
   document.getElementById("popupTags").innerHTML = d.tags.map(t => `<span class="game-popup__tag">${t}</span>`).join("");
   overlay.classList.add("active");
   document.body.style.overflow = "hidden";
