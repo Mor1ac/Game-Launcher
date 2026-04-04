@@ -127,7 +127,7 @@ const gameData = {
     dev: "Riot Games",
     date: "03.06.2020",
     price: "Бесплатно",
-    link: "/game-launcher/4/index2.html",
+    link: "../Page4//index2.html",
   },
   search__card__2: {
     title: "Minecraft",
@@ -139,7 +139,7 @@ const gameData = {
     dev: "Mojang Studios",
     date: "18.11.2011",
     price: "1 900 ₽",
-    link: "/game-launcher/4/index2.html",
+    link: "../Page4//index2.html",
   },
   search__card__3: {
     title: "Dota 2",
@@ -151,7 +151,7 @@ const gameData = {
     dev: "Valve",
     date: "09.07.2013",
     price: "Бесплатно",
-    link: "/game-launcher/4/index2.html",
+    link: "../Page4//index2.html",
   },
   search__card__4: {
     title: "Counter-Strike 2",
@@ -163,7 +163,7 @@ const gameData = {
     dev: "Valve",
     date: "27.09.2023",
     price: "Бесплатно",
-    link: "/game-launcher/4/index2.html",
+    link: "../Page4//index2.html",
   },
   search__card__5: {
     title: "Terraria",
@@ -175,7 +175,7 @@ const gameData = {
     dev: "Re-Logic",
     date: "16.05.2011",
     price: "419 ₽",
-    link: "/game-launcher/4/index2.html",
+    link: "../Page4//index2.html",
   },
 };
 const overlay = document.getElementById("gamePopupOverlay");
