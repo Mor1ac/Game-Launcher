@@ -266,6 +266,7 @@ body {
   font-size: clamp(12px, 1vw, 16px);
   cursor: pointer;
   transition: 0.3s;
+  text-decoration: none;
 }
 .discover-btn:hover {
   background-color: #e6e600;
