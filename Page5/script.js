@@ -176,7 +176,7 @@ document.addEventListener("click", () => {
   }
 });
 
-// ===== ПОПАП ИГР (ДАННЫЕ И ЛОГИКА) =====
+// ===== ПОПАП ИГР =====
 const gameData = {
   search__card1: {
     title: "VALORANT",
@@ -200,7 +200,39 @@ const gameData = {
     price: "1 900 ₽",
     link: "../Page4/index6.html",
   },
-  // ... (остальные игры аналогично вашему коду)
+  search__card__3: {
+    title: "Dota 2",
+    cover: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1766010373",
+    badge: "Бесплатно",
+    tags: ["MOBA", "Стратегия", "Командная"],
+    desc: "Самая глубокая многопользовательская стратегия в мире.",
+    dev: "Valve",
+    date: "09.07.2013",
+    price: "Бесплатно",
+    link: "../Page4/index5.html",
+  },
+  search__card__4: {
+    title: "Counter-Strike 2",
+    cover: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861",
+    badge: "Бесплатно",
+    tags: ["Шутер", "Экшен", "Соревновательная"],
+    desc: "Крупнейший технологический скачок в истории CS.",
+    dev: "Valve",
+    date: "27.09.2023",
+    price: "Бесплатно",
+    link: "../Page4/index4.html",
+  },
+  search__card__5: {
+    title: "Terraria",
+    cover: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1731252354",
+    badge: "Платная",
+    tags: ["Песочница", "Выживание", "Крафт"],
+    desc: "Копайте, сражайтесь, исследуйте, стройте!",
+    dev: "Re-Logic",
+    date: "16.05.2011",
+    price: "419 ₽",
+    link: "../Page4/index3.html",
+  },
 };
 
 const overlay = document.getElementById("gamePopupOverlay");

@@ -28,20 +28,24 @@ function closeAll() {
 }
 
 // ===== БУРГЕР =====
-burgerMenu.addEventListener("click", (e) => {
-  e.stopPropagation();
-  burgerOpen = !burgerOpen;
-  o.style.display = burgerOpen ? "flex" : "none";
-  o.classList.toggle("oo", burgerOpen);
-});
+if (burgerMenu) {
+  burgerMenu.addEventListener("click", (e) => {
+    e.stopPropagation();
+    burgerOpen = !burgerOpen;
+    o.style.display = burgerOpen ? "flex" : "none";
+    o.classList.toggle("oo", burgerOpen);
+  });
+}
 
 // ===== ИКОНКИ (ПАНЕЛИ) =====
-btnChat.addEventListener("click", (e) => {
-  e.stopPropagation();
-  const open = m2.style.display === "flex";
-  closeAll();
-  m2.style.display = open ? "none" : "flex";
-});
+if (btnChat) {
+  btnChat.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const open = m2.style.display === "flex";
+    closeAll();
+    m2.style.display = open ? "none" : "flex";
+  });
+}
 
 if (btnFriends) {
   btnFriends.addEventListener("click", (e) => {
@@ -52,66 +56,74 @@ if (btnFriends) {
   });
 }
 
-btnNotif.addEventListener("click", (e) => {
-  e.stopPropagation();
-  const open = m3.style.display === "flex";
-  closeAll();
-  if (!open) {
-    m3.style.display = "flex";
-    const badge = document.querySelector(".img3__badge");
-    if (badge) badge.style.display = "none";
-    document
-      .querySelectorAll(".m3__item--unread")
-      .forEach((el) => el.classList.remove("m3__item--unread"));
-    document
-      .querySelectorAll(".m3__dot")
-      .forEach((el) => (el.style.opacity = "0"));
-  }
-});
+if (btnNotif) {
+  btnNotif.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const open = m3.style.display === "flex";
+    closeAll();
+    if (!open) {
+      m3.style.display = "flex";
+      const badge = document.querySelector(".img3__badge");
+      if (badge) badge.style.display = "none";
+      document
+        .querySelectorAll(".m3__item--unread")
+        .forEach((el) => el.classList.remove("m3__item--unread"));
+      document
+        .querySelectorAll(".m3__dot")
+        .forEach((el) => (el.style.opacity = "0"));
+    }
+  });
+}
 
-// ===== ПОИСК (ИСПРАВЛЕНО) =====
-forSearch.addEventListener("focus", (e) => {
-  e.stopPropagation();
-  const rect = forSearch.getBoundingClientRect();
-  searchCont.style.top = rect.bottom + 10 + "px";
-  searchCont.style.left = rect.left + rect.width / 2 + "px";
-  searchCont.style.transform = "translateX(-50%)";
-  searchCont.style.display = "flex";
-});
+// ===== ПОИСК =====
+if (forSearch) {
+  forSearch.addEventListener("focus", (e) => {
+    e.stopPropagation();
+    const rect = forSearch.getBoundingClientRect();
+    searchCont.style.top = rect.bottom + 10 + "px";
+    searchCont.style.left = rect.left + rect.width / 2 + "px";
+    searchCont.style.transform = "translateX(-50%)";
+    searchCont.style.display = "flex";
+  });
 
-// УДАЛЕН ОБРАБОТЧИК BLUR, который закрывал поиск при клике на карточки
+  // Останавливаем закрытие при клике на само поле ввода
+  forSearch.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+}
 
 const cards = document.querySelectorAll(".search__card");
 cards.forEach((card) => {
-  // Сохраняем текст для поиска
   const p = card.querySelector("p");
   if (p) card.dataset.text = p.textContent.trim();
 });
 
-forSearch.addEventListener("input", function () {
-  const value = this.value.trim().toLowerCase();
-  cards.forEach((card) => {
-    const textEl = card.querySelector("p");
-    const orig = card.dataset.text;
-    if (!orig) return;
+if (forSearch) {
+  forSearch.addEventListener("input", function () {
+    const value = this.value.trim().toLowerCase();
+    cards.forEach((card) => {
+      const textEl = card.querySelector("p");
+      const orig = card.dataset.text;
+      if (!orig) return;
 
-    if (!value) {
-      card.classList.remove("hide");
-      textEl.innerHTML = orig;
-      return;
-    }
-    const idx = orig.toLowerCase().indexOf(value);
-    if (idx === -1) {
-      card.classList.add("hide");
-    } else {
-      card.classList.remove("hide");
-      textEl.innerHTML =
-        orig.slice(0, idx) +
-        `<span class="highlight">${orig.slice(idx, idx + value.length)}</span>` +
-        orig.slice(idx + value.length);
-    }
+      if (!value) {
+        card.classList.remove("hide");
+        textEl.innerHTML = orig;
+        return;
+      }
+      const idx = orig.toLowerCase().indexOf(value);
+      if (idx === -1) {
+        card.classList.add("hide");
+      } else {
+        card.classList.remove("hide");
+        textEl.innerHTML =
+          orig.slice(0, idx) +
+          `<span class="highlight">${orig.slice(idx, idx + value.length)}</span>` +
+          orig.slice(idx + value.length);
+      }
+    });
   });
-});
+}
 
 // ===== ПОПАП ИГР =====
 const gameData = {
@@ -208,7 +220,7 @@ Object.keys(gameData).forEach((cls) => {
   if (!card) return;
   card.addEventListener("click", (e) => {
     e.preventDefault();
-    e.stopPropagation();
+    e.stopPropagation(); // Чтобы поиск не закрывался раньше времени
     searchCont.style.display = "none";
     openGamePopup(cls);
   });
@@ -218,26 +230,6 @@ if (popupClose) popupClose.addEventListener("click", closeGamePopup);
 if (overlay) {
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) closeGamePopup();
-  });
-}
-
-// ===== УВЕДОМЛЕНИЯ =====
-const unreadItems = document.querySelectorAll(".m3__item--unread");
-if (unreadItems.length > 0) {
-  const badge = document.createElement("div");
-  badge.className = "img3__badge";
-  badge.textContent = unreadItems.length;
-  if (btnNotif) btnNotif.appendChild(badge);
-}
-
-const clearNotif = document.querySelector(".m3__clear");
-if (clearNotif) {
-  clearNotif.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const list = document.querySelector(".m3__list");
-    if (list) {
-      list.innerHTML = `<div style="padding:30px 16px;text-align:center;color:rgba(255,255,255,0.3);font-size:13px;">Нет уведомлений</div>`;
-    }
   });
 }
 
@@ -297,21 +289,8 @@ function sendMessage() {
   }, 1200);
 }
 
-if (chatSend) {
-  chatSend.addEventListener("click", (e) => {
-    e.stopPropagation();
-    sendMessage();
-  });
-}
-
-if (chatInput) {
-  chatInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.stopPropagation();
-      sendMessage();
-    }
-  });
-}
+if (chatSend) chatSend.addEventListener("click", (e) => { e.stopPropagation(); sendMessage(); });
+if (chatInput) chatInput.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.stopPropagation(); sendMessage(); } });
 
 // ===== ЛАУНЧЕР НАСТРОЕК =====
 const settingsBtn = document.querySelector(".im8");
@@ -340,13 +319,9 @@ menuItems.forEach((item, idx) => {
   item.addEventListener("click", (e) => {
     e.stopPropagation();
     menuItems.forEach((i) => i.classList.remove("menu__item-active"));
-    launcherSettings.forEach((s) =>
-      s.classList.remove("launcher__settings--active"),
-    );
+    launcherSettings.forEach((s) => s.classList.remove("launcher__settings--active"));
     item.classList.add("menu__item-active");
-    if (launcherSettings[idx]) {
-        launcherSettings[idx].classList.add("launcher__settings--active");
-    }
+    if (launcherSettings[idx]) launcherSettings[idx].classList.add("launcher__settings--active");
   });
 });
 
@@ -362,7 +337,7 @@ document.addEventListener("click", () => {
   }
 });
 
-// Останавливаем всплытие, чтобы клики внутри панелей не закрывали их
+// ГЛОБАЛЬНАЯ ОСТАНОВКА ВСПЛЫТИЯ ДЛЯ ВСЕХ ПАНЕЛЕЙ
 [m1, m2, m3, o, launcherContainer, searchCont].forEach((el) => {
   if (el) {
     el.addEventListener("click", (e) => e.stopPropagation());
