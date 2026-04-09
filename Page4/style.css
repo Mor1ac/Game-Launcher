@@ -20,7 +20,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url(images/Main/Cont.svg);
+  background-image: url(images/Cont.svg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -70,7 +70,7 @@ body {
   right: clamp(12px, 1.5vw, 20px);
   width: clamp(16px, 1.5vw, 22px);
   height: clamp(16px, 1.5vw, 22px);
-  background-image: url(images/Main/Shape.svg);
+  background-image: url(images/Shape.svg);
   background-repeat: no-repeat;
   background-size: contain;
   pointer-events: none;
@@ -101,13 +101,13 @@ body {
   position: relative;
 }
 .img1 {
-  background-image: url(images/Main/Icons.svg);
+  background-image: url(images/Icons.svg);
 }
 .img2 {
-  background-image: url(images/Main/union.svg);
+  background-image: url(images/union.svg);
 }
 .img3 {
-  background-image: url(images/Main/chat.svg);
+  background-image: url(images/chat.svg);
 }
 .img1:hover,
 .img2:hover,
@@ -190,20 +190,20 @@ body {
   display: block;
 }
 .im4 {
-  background-image: url(images/Main/home.svg);
+  background-image: url(images/home.svg);
   margin-top: clamp(40px, 8vh, 150px);
 }
 .im5 {
-  background-image: url(images/Main/clans.svg);
+  background-image: url(images/clans.svg);
 }
 .im6 {
-  background-image: url(images/Main/news.svg);
+  background-image: url(images/news.svg);
 }
 .im7 {
-  background-image: url(images/Main/library.svg);
+  background-image: url(images/library.svg);
 }
 .im8 {
-  background-image: url(images/Main/settings.svg);
+  background-image: url(images/settings.svg);
   margin-top: clamp(40px, 8vh, 165px);
 }
 .im4:hover,
@@ -352,16 +352,16 @@ body {
   flex-shrink: 0;
 }
 .im9 {
-  background-image: url(images/Main/space.svg);
+  background-image: url(images/space.svg);
 }
 .im10 {
-  background-image: url(images/Main/space.svg);
+  background-image: url(images/space.svg);
 }
 .im11 {
-  background-image: url(images/Main/fish.svg);
+  background-image: url(images/fish.svg);
 }
 .im12 {
-  background-image: url(images/Main/fish.svg);
+  background-image: url(images/fish.svg);
 }
 .im9:hover,
 .im10:hover,
@@ -1203,15 +1203,15 @@ body {
 }
 .m3__icon--friend {
   background-color: rgba(38, 187, 255, 0.2);
-  background-image: url(images/Main/Icons.svg);
+  background-image: url(images/Icons.svg);
 }
 .m3__icon--game {
   background-color: rgba(255, 200, 38, 0.2);
-  background-image: url(images/Main/home.svg);
+  background-image: url(images/home.svg);
 }
 .m3__icon--update {
   background-color: rgba(100, 255, 150, 0.2);
-  background-image: url(images/Main/settings.svg);
+  background-image: url(images/settings.svg);
 }
 .m3__content {
   flex: 1;

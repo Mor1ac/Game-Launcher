@@ -20,7 +20,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url(images/Cont.svg);
+  background-image: url(images/cont.svg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
