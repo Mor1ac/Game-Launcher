@@ -1,3 +1,14 @@
+// ===== ПРОВЕРКА ИМЕНИ ПОЛЬЗОВАТЕЛЯ =====
+document.addEventListener("DOMContentLoaded", () => {
+  const nameDisplay = document.querySelector(".header .name");
+  // Проверяем оба ключа, которые могли использоваться при регистрации/входе
+  const savedName = localStorage.getItem("userNickname") || localStorage.getItem("gg_current_user");
+
+  if (savedName && nameDisplay) {
+    nameDisplay.textContent = `Hello, ${savedName}`;
+  }
+});
+
 // ===== ЭЛЕМЕНТЫ =====
 const o = document.querySelector(".o");
 const burgerMenu = document.querySelector(".burger-menu");
@@ -25,7 +36,7 @@ burgerMenu.addEventListener("click", (e) => {
   o.classList.toggle("oo", burgerOpen);
 });
 
-// ===== ИКОНКИ =====
+// ===== ИКОНКИ (ПАНЕЛИ) =====
 btnChat.addEventListener("click", (e) => {
   e.stopPropagation();
   const open = m2.style.display === "flex";
@@ -60,20 +71,18 @@ btnNotif.addEventListener("click", (e) => {
 // ===== ПОИСК =====
 forSearch.addEventListener("focus", (e) => {
   e.stopPropagation();
-  // Позиционируем под хедером динамически
   const rect = forSearch.getBoundingClientRect();
   searchCont.style.top = rect.bottom + 10 + "px";
   searchCont.style.left = rect.left + rect.width / 2 + "px";
   searchCont.style.transform = "translateX(-50%)";
   searchCont.style.display = "flex";
 });
+
 forSearch.addEventListener("blur", () => {
   setTimeout(() => {
     searchCont.style.display = "none";
   }, 200);
 });
-forSearch.addEventListener("click", (e) => e.stopPropagation());
-searchCont.addEventListener("click", (e) => e.stopPropagation());
 
 const cards = document.querySelectorAll(".search__card");
 cards.forEach((card) => {
@@ -103,28 +112,11 @@ forSearch.addEventListener("input", function () {
   });
 });
 
-// ===== ЗАКРЫТИЕ ПО КЛИКУ СНАРУЖИ =====
-[m1, m2, m3].forEach((p) =>
-  p.addEventListener("click", (e) => e.stopPropagation()),
-);
-o.addEventListener("click", (e) => e.stopPropagation());
-
-document.addEventListener("click", () => {
-  closeAll();
-  searchCont.style.display = "none";
-  if (burgerOpen) {
-    o.style.display = "none";
-    o.classList.remove("oo");
-    burgerOpen = false;
-  }
-});
-
 // ===== ПОПАП ИГР =====
 const gameData = {
   search__card1: {
     title: "VALORANT",
-    cover:
-      "https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S2_1200x1600-773ea2de7951435e977ba5f5f6934442?resize=1&w=720&h=480&quality=medium",
+    cover: "https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S2_1200x1600-773ea2de7951435e977ba5f5f6934442?resize=1&w=720&h=480&quality=medium",
     badge: "Бесплатно",
     tags: ["Шутер", "Экшен", "Многопользовательская"],
     desc: "Тактический шутер 5 на 5 от Riot Games.",
@@ -135,8 +127,7 @@ const gameData = {
   },
   search__card__2: {
     title: "Minecraft",
-    cover:
-      "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg",
+    cover: "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg",
     badge: "Платная",
     tags: ["Песочница", "Выживание", "Крафт"],
     desc: "Исследуйте бесконечные миры и стройте что угодно.",
@@ -147,8 +138,7 @@ const gameData = {
   },
   search__card__3: {
     title: "Dota 2",
-    cover:
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1766010373",
+    cover: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1766010373",
     badge: "Бесплатно",
     tags: ["MOBA", "Стратегия", "Командная"],
     desc: "Самая глубокая многопользовательская стратегия в мире.",
@@ -159,8 +149,7 @@ const gameData = {
   },
   search__card__4: {
     title: "Counter-Strike 2",
-    cover:
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861",
+    cover: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861",
     badge: "Бесплатно",
     tags: ["Шутер", "Экшен", "Соревновательная"],
     desc: "Крупнейший технологический скачок в истории CS.",
@@ -171,8 +160,7 @@ const gameData = {
   },
   search__card__5: {
     title: "Terraria",
-    cover:
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1731252354",
+    cover: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1731252354",
     badge: "Платная",
     tags: ["Песочница", "Выживание", "Крафт"],
     desc: "Копайте, сражайтесь, исследуйте, стройте!",
@@ -182,6 +170,7 @@ const gameData = {
     link: "../Page4/index3.html",
   },
 };
+
 const overlay = document.getElementById("gamePopupOverlay");
 const popupClose = document.getElementById("gamePopupClose");
 
@@ -202,6 +191,7 @@ function openGamePopup(cls) {
   overlay.classList.add("active");
   document.body.style.overflow = "hidden";
 }
+
 function closeGamePopup() {
   overlay.classList.remove("active");
   document.body.style.overflow = "";
@@ -217,15 +207,13 @@ Object.keys(gameData).forEach((cls) => {
     openGamePopup(cls);
   });
 });
+
 popupClose.addEventListener("click", closeGamePopup);
 overlay.addEventListener("click", (e) => {
   if (e.target === overlay) closeGamePopup();
 });
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeGamePopup();
-});
 
-// ===== УВЕДОМЛЕНИЯ — бейдж =====
+// ===== УВЕДОМЛЕНИЯ =====
 const unreadCount = document.querySelectorAll(".m3__item--unread").length;
 if (unreadCount > 0) {
   const badge = document.createElement("div");
@@ -233,6 +221,7 @@ if (unreadCount > 0) {
   badge.textContent = unreadCount;
   btnNotif.appendChild(badge);
 }
+
 document.querySelector(".m3__clear").addEventListener("click", (e) => {
   e.stopPropagation();
   document.querySelector(".m3__list").innerHTML =
@@ -290,10 +279,12 @@ function sendMessage() {
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }, 1200);
 }
+
 chatSend.addEventListener("click", (e) => {
   e.stopPropagation();
   sendMessage();
 });
+
 chatInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.stopPropagation();
@@ -334,16 +325,18 @@ menuItems.forEach((item, idx) => {
   });
 });
 
-menuItems[0].classList.add("menu__item-active");
-launcherSettings[0].classList.add("launcher__settings--active");
+// Закрытие по клику снаружи
+document.addEventListener("click", () => {
+  closeAll();
+  searchCont.style.display = "none";
+  launcherContainer.style.display = "none";
+  if (burgerOpen) {
+    o.style.display = "none";
+    o.classList.remove("oo");
+    burgerOpen = false;
+  }
+});
 
-document
-  .querySelector(".action__button--save")
-  .addEventListener("click", (e) => {
-    e.stopPropagation();
-    launcherContainer.style.display = "none";
-  });
-document
-  .querySelector(".action__button--reset")
-  .addEventListener("click", (e) => e.stopPropagation());
-launcherContainer.addEventListener("click", (e) => e.stopPropagation());
+[m1, m2, m3, o, launcherContainer, searchCont].forEach((el) => {
+  if (el) el.addEventListener("click", (e) => e.stopPropagation());
+});

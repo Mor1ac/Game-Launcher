@@ -1,54 +1,67 @@
-const userNameInp = document.querySelector(".username");
-const password = document.querySelector(".password");
-const confirm = document.querySelector(".confirm");
+const usernameInput = document.querySelector(".username");
+const passwordInput = document.querySelector(".password");
+const loginBtn      = document.querySelector(".confirm");
 
-confirm.addEventListener("click", function(e) {
+loginBtn.addEventListener("click", function(e) {
   e.preventDefault();
+  clearErrors();
 
-  const user = userNameInp.value.trim();
-  const pass = password.value.trim();
+  const user = usernameInput.value.trim();
+  const pass = passwordInput.value.trim();
 
-  if (!user || !pass) {
-    showError("Заполните все поля");
+  // 1. Проверка пустых полей
+  if (!user) {
+    showError("Введите никнейм", usernameInput);
+    return;
+  }
+  if (!pass) {
+    showError("Введите пароль", passwordInput);
     return;
   }
 
-  // Проверяем дефолтный аккаунт
-  if (user === "user" && pass === "2422") {
-    window.location.href = "/game-launcher/2/index.html";
-    return;
-  }
-
-  // Проверяем зарегистрированных пользователей
+  // 2. Получаем базу пользователей
   const users = JSON.parse(localStorage.getItem("gg_users") || "{}");
 
-  if (users[user] && users[user] === pass) {
-    localStorage.setItem("gg_current_user", user);
-    window.location.href = "/game-launcher/2/index.html";
-  } else if (users[user]) {
-    showError("Неверный пароль", password);
+  // 3. Проверка существования пользователя и пароля
+  if (!users[user]) {
+    showError("Пользователь не найден", usernameInput);
+  } else if (users[user] !== pass) {
+    showError("Неверный пароль", passwordInput);
   } else {
-    showError("Пользователь не найден", userNameInp);
+    // Если всё верно:
+    // Сохраняем никнейм для отображения в лаунчере
+    localStorage.setItem("userNickname", user);
+    
+    // Переходим на главную
+    window.location.href = "../Page2/index.html";
   }
 });
 
+// Функция вывода ошибок (как в регистрации)
 function showError(msg, field) {
-  // Убираем старые ошибки
-  document.querySelectorAll(".error-msg").forEach(e => e.remove());
-  document.querySelectorAll(".input-error").forEach(e => e.classList.remove("input-error"));
-
   const err = document.createElement("p");
   err.className = "error-msg";
   err.textContent = msg;
-  confirm.parentNode.insertBefore(err, confirm);
-
-  if (field) field.classList.add("input-error");
+  
+  loginBtn.parentNode.insertBefore(err, loginBtn);
+  
+  if (field) {
+    field.classList.add("input-error");
+    field.focus();
+  }
 }
 
-// Сброс ошибки при вводе
-[userNameInp, password].forEach(inp => {
+// Очистка ошибок
+function clearErrors() {
+  document.querySelectorAll(".error-msg").forEach(e => e.remove());
+  document.querySelectorAll("input").forEach(inp => inp.classList.remove("input-error"));
+}
+
+// Сброс красной рамки при вводе
+document.querySelectorAll("input").forEach(inp => {
   inp.addEventListener("input", () => {
     inp.classList.remove("input-error");
-    document.querySelectorAll(".error-msg").forEach(e => e.remove());
+    const existingError = document.querySelector(".error-msg");
+    if (existingError) existingError.remove();
   });
 });
