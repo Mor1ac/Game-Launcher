@@ -20,7 +20,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url(Images/Cont.svg);
+  background-image: url(images/Cont.svg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -71,7 +71,7 @@ body {
   right: clamp(12px, 1.5vw, 20px);
   width: clamp(16px, 1.5vw, 22px);
   height: clamp(16px, 1.5vw, 22px);
-  background-image: url(Images/Shape.svg);
+  background-image: url(images/Shape.svg);
   background-repeat: no-repeat;
   background-size: contain;
   pointer-events: none;
@@ -102,13 +102,13 @@ body {
   position: relative;
 }
 .img1 {
-  background-image: url(Images/Icons.svg);
+  background-image: url(images/Icons.svg);
 }
 .img2 {
-  background-image: url(Images/union.svg);
+  background-image: url(images/union.svg);
 }
 .img3 {
-  background-image: url(Images/chat.svg);
+  background-image: url(images/chat.svg);
 }
 .img1:hover,
 .img2:hover,
@@ -191,20 +191,20 @@ body {
   display: block;
 }
 .im4 {
-  background-image: url(Images/home.svg);
+  background-image: url(images/home.svg);
   margin-top: clamp(40px, 8vh, 150px);
 }
 .im5 {
-  background-image: url(Images/clans.svg);
+  background-image: url(images/clans.svg);
 }
 .im6 {
-  background-image: url(Images/news.svg);
+  background-image: url(images/news.svg);
 }
 .im7 {
-  background-image: url(Images/library.svg);
+  background-image: url(images/library.svg);
 }
 .im8 {
-  background-image: url(Images/settings.svg);
+  background-image: url(images/settings.svg);
   margin-top: clamp(40px, 8vh, 165px);
 }
 .im4:hover,
@@ -288,17 +288,17 @@ body {
   margin-top: 0;
 }
 .im9 {
-  background-image: url(Images/Trine2.svg);
+  background-image: url(images/Trine2.svg);
   margin-left: clamp(40px, 18vw, 350px);
 }
 .im10 {
-  background-image: url(Images/Batman.svg);
+  background-image: url(images/Batman.svg);
 }
 .im11 {
-  background-image: url(Images/Portal.svg);
+  background-image: url(images/Portal.svg);
 }
 .im12 {
-  background-image: url(Images/Druide.svg);
+  background-image: url(images/Druide.svg);
 }
 .im9:hover,
 .im10:hover,
@@ -1148,15 +1148,15 @@ body {
 }
 .m3__icon--friend {
   background-color: rgba(38, 187, 255, 0.2);
-  background-image: url(Images/Icons.svg);
+  background-image: url(images/Icons.svg);
 }
 .m3__icon--game {
   background-color: rgba(255, 200, 38, 0.2);
-  background-image: url(Images/home.svg);
+  background-image: url(images/home.svg);
 }
 .m3__icon--update {
   background-color: rgba(100, 255, 150, 0.2);
-  background-image: url(Images/settings.svg);
+  background-image: url(images/settings.svg);
 }
 .m3__content {
   flex: 1;
