@@ -2,10 +2,13 @@ const email    = document.querySelector(".email");
 const username = document.querySelector(".username");
 const password = document.querySelector(".password");
 const password2= document.querySelector(".password2");
-const confirm  = document.querySelector(".confirm");
+const confirmBtn = document.querySelector(".confirm");
 
-confirm.addEventListener("click", function(e) {
-  e.preventDefault(); // Останавливаем переход, пока не проверим поля
+confirmBtn.addEventListener("click", function(e) {
+  // Останавливаем любое стандартное действие ссылки
+  e.preventDefault();
+  
+  // Очищаем старые ошибки и рамки
   clearErrors();
 
   const em   = email    ? email.value.trim()    : "";
@@ -13,70 +16,61 @@ confirm.addEventListener("click", function(e) {
   const pass = password ? password.value.trim() : "";
   const pass2= password2? password2.value.trim(): "";
 
-  // ===== ПРОВЕРКА ПУСТЫХ ПОЛЕЙ =====
-  if (!em) { 
-    showError("Введите ваш Email", email); 
-    return; 
-  }
-  if (!user) { 
-    showError("Поле никнейма не заполнено", username); 
-    return; 
-  }
-  if (!pass) { 
-    showError("Введите пароль", password); 
-    return; 
-  }
-  if (!pass2) { 
-    showError("Повторите пароль", password2); 
-    return; 
+  // ===== ГЛАВНАЯ ПРОВЕРКА =====
+  // Если хоть одно важное поле пустое - выводим ошибку и СТОП
+  if (!em || !user || !pass || !pass2) {
+    showError("Ошибка: Заполните все поля!", [email, username, password, password2]);
+    return; // Важно! Этот return не дает коду идти дальше к переходу
   }
 
-  // ===== ВАЛИДАЦИЯ =====
-  if (pass !== pass2) { 
-    showError("Пароли не совпадают", password2); 
-    return; 
-  }
-  if (pass.length < 4) { 
-    showError("Пароль слишком короткий (мин. 4 символа)", password); 
-    return; 
+  // Проверка совпадения паролей
+  if (pass !== pass2) {
+    showError("Пароли не совпадают!", password2);
+    return;
   }
 
-  // ===== СОХРАНЕНИЕ ДАННЫХ =====
+  // Проверка длины
+  if (pass.length < 4) {
+    showError("Пароль слишком короткий!", password);
+    return;
+  }
+
+  // ===== ЕСЛИ ВСЁ ОК — СОХРАНЯЕМ И ПЕРЕХОДИМ =====
+  
+  // 1. Сохраняем в общую базу (для будущих входов)
   const users = JSON.parse(localStorage.getItem("gg_users") || "{}");
-
   if (users[user]) {
     showError("Этот никнейм уже занят", username);
     return;
   }
-
-  // Сохраняем в базу данных
   users[user] = pass;
   localStorage.setItem("gg_users", JSON.stringify(users));
-  
-  // Сохраняем ТЕКУЩЕГО пользователя для главной страницы
+
+  // 2. Сохраняем ТЕКУЩЕГО юзера для отображения "Hello, Name"
   localStorage.setItem("gg_current_user", user);
 
-  // Переход на главную (убедись, что путь верный)
-  window.location.href = "../Page2/index.html"; 
+  // 3. Только теперь делаем переход
+  window.location.href = "../Page2/index.html";
 });
 
-function showError(msg, field) {
+// ФУНКЦИЯ ВЫВОДА ОШИБКИ
+function showError(msg, fields) {
   const err = document.createElement("p");
   err.className = "error-msg";
-  err.style.color = "#ff4d4d"; // Красный цвет текста
-  err.style.fontSize = "13px";
-  err.style.marginBottom = "15px";
-  err.style.textAlign = "center";
   err.textContent = msg;
   
-  confirm.parentNode.insertBefore(err, confirm);
+  // Вставляем текст ошибки перед кнопкой
+  confirmBtn.parentNode.insertBefore(err, confirmBtn);
   
-  if (field) {
-    field.classList.add("input-error");
-    field.focus();
+  // Подсвечиваем поля красным
+  if (Array.isArray(fields)) {
+    fields.forEach(f => { if(f) f.classList.add("input-error"); });
+  } else if (fields) {
+    fields.classList.add("input-error");
   }
 }
 
+// ФУНКЦИЯ ОЧИСТКИ
 function clearErrors() {
   document.querySelectorAll(".error-msg").forEach(e => e.remove());
   document.querySelectorAll("input").forEach(inp => inp.classList.remove("input-error"));
