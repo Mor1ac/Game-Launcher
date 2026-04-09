@@ -68,7 +68,7 @@ body {
   right: clamp(10px, 1.2vw, 20px);
   width: clamp(15px, 1.4vw, 22px);
   height: clamp(15px, 1.4vw, 22px);
-  background-image: url(Images/Shape.svg);
+  background-image: url(images/Shape.svg);
   background-repeat: no-repeat;
   background-size: contain;
   pointer-events: none;
@@ -98,13 +98,13 @@ body {
   transition: 0.2s;
 }
 .img1 {
-  background-image: url(Images/Icons.svg);
+  background-image: url(images/Icons.svg);
 }
 .img2 {
-  background-image: url(Images/union.svg);
+  background-image: url(images/union.svg);
 }
 .img3 {
-  background-image: url(Images/chat.svg);
+  background-image: url(images/chat.svg);
   position: relative;
 }
 .img1:hover,
@@ -189,19 +189,19 @@ body {
   display: block;
 }
 .im4 {
-  background-image: url(Images/home.svg);
+  background-image: url(images/home.svg);
 }
 .im5 {
-  background-image: url(Images/clans.svg);
+  background-image: url(images/clans.svg);
 }
 .im6 {
-  background-image: url(Images/news.svg);
+  background-image: url(images/news.svg);
 }
 .im7 {
-  background-image: url(Images/library.svg);
+  background-image: url(images/library.svg);
 }
 .im8 {
-  background-image: url(Images/settings.svg);
+  background-image: url(images/settings.svg);
   margin-top: clamp(40px, 8vh, 165px);
   cursor: pointer;
 }
@@ -240,7 +240,7 @@ body {
   height: clamp(200px, 35vh, 434px);
 }
 .batman {
-  background-image: url(Images/Batman.svg);
+  background-image: url(images/Batman.svg);
   flex: 1;
   min-width: 0;
   height: 100%;
@@ -328,13 +328,13 @@ body {
   padding: clamp(8px, 1.2vh, 15px);
 }
 .im-1 {
-  background-image: url(Images/Diablo.svg);
+  background-image: url(images/Diablo.svg);
 }
 .im-2 {
-  background-image: url(Images/RPG.svg);
+  background-image: url(images/RPG.svg);
 }
 .im-3 {
-  background-image: url(Images/Druide.svg);
+  background-image: url(images/Druide.svg);
 }
 .but1,
 .but2,
@@ -1198,15 +1198,15 @@ body {
 }
 .m3__icon--friend {
   background-color: rgba(38, 187, 255, 0.2);
-  background-image: url(Images/Icons.svg);
+  background-image: url(images/Icons.svg);
 }
 .m3__icon--game {
   background-color: rgba(255, 200, 38, 0.2);
-  background-image: url(Images/home.svg);
+  background-image: url(images/home.svg);
 }
 .m3__icon--update {
   background-color: rgba(100, 255, 150, 0.2);
-  background-image: url(Images/settings.svg);
+  background-image: url(images/settings.svg);
 }
 .m3__content {
   flex: 1;
