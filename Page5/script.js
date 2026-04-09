@@ -1,13 +1,12 @@
-// ===== ПРОВЕРКА ИМЕНИ ПОЛЬЗОВАТЕЛЯ =====
 document.addEventListener("DOMContentLoaded", () => {
   const nameDisplay = document.querySelector(".name");
-  // Пытаемся взять имя из localStorage (как в вашем скрипте входа)
-  const savedName = localStorage.getItem("gg_current_user") || "Tina Park";
-  if (nameDisplay) {
-    nameDisplay.textContent = `Hello, ${savedName}`;
+  // Получаем ник из памяти
+  const currentUser = localStorage.getItem("gg_current_user");
+
+  if (currentUser && nameDisplay) {
+    nameDisplay.textContent = `Hello, ${currentUser}`;
   }
 });
-
 // ===== ЭЛЕМЕНТЫ =====
 const o = document.querySelector(".o");
 const burgerMenu = document.querySelector(".burger-menu");

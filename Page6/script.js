@@ -5,7 +5,7 @@ const password2= document.querySelector(".password2");
 const confirm  = document.querySelector(".confirm");
 
 confirm.addEventListener("click", function(e) {
-  e.preventDefault();
+  e.preventDefault(); // Останавливаем переход, пока не проверим поля
   clearErrors();
 
   const em   = email    ? email.value.trim()    : "";
@@ -19,7 +19,7 @@ confirm.addEventListener("click", function(e) {
     return; 
   }
   if (!user) { 
-    showError("Придумайте никнейм", username); 
+    showError("Поле никнейма не заполнено", username); 
     return; 
   }
   if (!pass) { 
@@ -27,21 +27,21 @@ confirm.addEventListener("click", function(e) {
     return; 
   }
   if (!pass2) { 
-    showError("Повторите пароль для проверки", password2); 
+    showError("Повторите пароль", password2); 
     return; 
   }
 
-  // ===== ПРОВЕРКА ВАЛИДНОСТИ =====
+  // ===== ВАЛИДАЦИЯ =====
   if (pass !== pass2) { 
     showError("Пароли не совпадают", password2); 
     return; 
   }
   if (pass.length < 4) { 
-    showError("Пароль слишком короткий (минимум 4 символа)", password); 
+    showError("Пароль слишком короткий (мин. 4 символа)", password); 
     return; 
   }
 
-  // ===== ЛОГИКА СОХРАНЕНИЯ =====
+  // ===== СОХРАНЕНИЕ ДАННЫХ =====
   const users = JSON.parse(localStorage.getItem("gg_users") || "{}");
 
   if (users[user]) {
@@ -49,46 +49,35 @@ confirm.addEventListener("click", function(e) {
     return;
   }
 
-  // Сохраняем пользователя в общую базу
+  // Сохраняем в базу данных
   users[user] = pass;
   localStorage.setItem("gg_users", JSON.stringify(users));
   
-  // Сохраняем НИКНЕЙМ для главной страницы (Page2)
-  localStorage.setItem("userNickname", user);
+  // Сохраняем ТЕКУЩЕГО пользователя для главной страницы
+  localStorage.setItem("gg_current_user", user);
 
-  // Переходим в лаунчер (путь согласно твоей структуре папок)
-  window.location.href = "../Page2/index.html";
+  // Переход на главную (убедись, что путь верный)
+  window.location.href = "../Page2/index.html"; 
 });
 
-// ФУНКЦИЯ ВЫВОДА ОШИБКИ
 function showError(msg, field) {
-  clearErrors();
-  
   const err = document.createElement("p");
   err.className = "error-msg";
+  err.style.color = "#ff4d4d"; // Красный цвет текста
+  err.style.fontSize = "13px";
+  err.style.marginBottom = "15px";
+  err.style.textAlign = "center";
   err.textContent = msg;
   
-  // Вставляем ошибку перед кнопкой подтверждения
   confirm.parentNode.insertBefore(err, confirm);
   
-  // Подсвечиваем поле красным
   if (field) {
     field.classList.add("input-error");
-    field.focus(); 
+    field.focus();
   }
 }
 
-// ФУНКЦИЯ ОЧИСТКИ ОШИБОК
 function clearErrors() {
   document.querySelectorAll(".error-msg").forEach(e => e.remove());
   document.querySelectorAll("input").forEach(inp => inp.classList.remove("input-error"));
 }
-
-// Убираем красную рамку при вводе
-document.querySelectorAll("input").forEach(inp => {
-  inp.addEventListener("input", () => {
-    inp.classList.remove("input-error");
-    const existingError = document.querySelector(".error-msg");
-    if (existingError) existingError.remove();
-  });
-});

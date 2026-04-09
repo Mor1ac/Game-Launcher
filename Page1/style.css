@@ -108,6 +108,22 @@ body {
   letter-spacing: 1px;
 }
 
+
+.input-error {
+  border: 1px solid #ff4d4d !important;
+  background-color: rgba(255, 77, 77, 0.05) !important;
+}
+
+.error-msg {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
 /* ===== КНОПКА CONFIRM ===== */
 .confirm {
   width: 100%;

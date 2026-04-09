@@ -1,16 +1,12 @@
-// ===== ПРОВЕРКА ИМЕНИ ПОЛЬЗОВАТЕЛЯ =====
 document.addEventListener("DOMContentLoaded", () => {
   const nameDisplay = document.querySelector(".name");
-  // Проверяем сохраненное имя (ключи могут быть разными в зависимости от страницы входа)
-  const savedName = localStorage.getItem("userNickname") || localStorage.getItem("gg_current_user");
+  // Получаем ник из памяти
+  const currentUser = localStorage.getItem("gg_current_user");
 
-  if (savedName && nameDisplay) {
-    nameDisplay.textContent = `Hello, ${savedName}`;
-  } else if (nameDisplay) {
-    nameDisplay.textContent = "Hello, Tina Park"; // Значение по умолчанию
+  if (currentUser && nameDisplay) {
+    nameDisplay.textContent = `Hello, ${currentUser}`;
   }
 });
-
 // ===== ЭЛЕМЕНТЫ =====
 const o = document.querySelector(".o");
 const burgerMenu = document.querySelector(".burger-menu");

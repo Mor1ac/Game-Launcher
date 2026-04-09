@@ -1,11 +1,10 @@
-// ===== ПРОВЕРКА ИМЕНИ ПОЛЬЗОВАТЕЛЯ =====
 document.addEventListener("DOMContentLoaded", () => {
-  const nameDisplay = document.querySelector(".header .name");
-  // Проверяем оба ключа, которые могли использоваться при регистрации/входе
-  const savedName = localStorage.getItem("userNickname") || localStorage.getItem("gg_current_user");
+  const nameDisplay = document.querySelector(".name");
+  // Получаем ник из памяти
+  const currentUser = localStorage.getItem("gg_current_user");
 
-  if (savedName && nameDisplay) {
-    nameDisplay.textContent = `Hello, ${savedName}`;
+  if (currentUser && nameDisplay) {
+    nameDisplay.textContent = `Hello, ${currentUser}`;
   }
 });
 

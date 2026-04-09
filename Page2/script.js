@@ -1,14 +1,12 @@
-// ===== 1. ПЕРСОНАЛИЗАЦИЯ (НИКНЕЙМ) =====
-// Этот блок проверяет имя сразу при загрузке страницы
 document.addEventListener("DOMContentLoaded", () => {
-  const nameDisplay = document.querySelector(".header .name");
-  const savedName = localStorage.getItem("userNickname");
+  const nameDisplay = document.querySelector(".name");
+  // Получаем ник из памяти
+  const currentUser = localStorage.getItem("gg_current_user");
 
-  if (savedName && nameDisplay) {
-    nameDisplay.textContent = `Hello, ${savedName}`;
+  if (currentUser && nameDisplay) {
+    nameDisplay.textContent = `Hello, ${currentUser}`;
   }
 });
-
 // ===== 2. ЭЛЕМЕНТЫ =====
 const o = document.querySelector(".o");
 const burgerMenu = document.querySelector(".burger-menu");

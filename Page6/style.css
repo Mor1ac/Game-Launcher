@@ -19,7 +19,7 @@ html, body {
 /* ФОН */
 .backgroundImg {
   flex: 1;
-  background-image: url(/game-launcher/1/images/cont.svg);
+  background-image: url(../Page1/images/cont.svg);
   background-size: cover;
   background-position: center center;
   position: relative;
@@ -49,7 +49,7 @@ html, body {
 
 /* ЛОГО */
 .logo {
-  background-image: url(/game-launcher/1/images/Logo.svg);
+  background-image: url(../Page1/images/Logo.svg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -209,4 +209,40 @@ input::placeholder { color: rgba(255,255,255,0.25); }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-4px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Желтая кнопка */
+.confirm {
+  width: 100%;
+  height: 50px;
+  background-color: #ffcc00; /* Желтый */
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.confirm:hover {
+  background-color: #e6b800;
+  transform: translateY(-1px);
+}
+
+/* Стиль текста ошибки */
+.error-msg {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Красная рамка для пустых инпутов */
+.input-error {
+  border: 1px solid #ff4d4d !important;
 }
