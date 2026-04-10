@@ -37,7 +37,7 @@ confirmBtn.addEventListener("click", function (e) {
 
   if (users[user] && users[user] === pass) {
     localStorage.setItem("gg_current_user", user);
-    window.location.href = "Page2/index.html";
+    window.location.href = "../Page2/index.html";
   } else {
     // Если данные введены, но они неверны
     showError("Неверный логин или пароль", [userNameInp, password]);
