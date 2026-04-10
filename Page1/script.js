@@ -3,7 +3,7 @@ const password = document.querySelector(".password");
 const confirmBtn = document.querySelector(".confirm");
 
 confirmBtn.addEventListener("click", function(e) {
-  // 1. Останавливаем переход по ссылке href, чтобы выполнить проверку
+  // 1. Останавливаем переход по ссылке
   e.preventDefault();
 
   const user = userNameInp.value.trim();
@@ -13,34 +13,26 @@ confirmBtn.addEventListener("click", function(e) {
   clearErrors();
 
   // 2. ПРОВЕРКА НА ПУСТЫЕ ПОЛЯ
-  // Если оба поля пустые
-  if (!user && !pass) {
-    showError("Введите логин и пароль", [userNameInp, password]);
-    return; // Останавливаем код, переход не случится
-  } 
-  
-  // Если пусто только имя
-  if (!user) {
-    showError("Поле логина не заполнено", userNameInp);
+  // Если хотя бы одно из полей (или оба) пустые
+  if (!user || !pass) {
+    const emptyFields = [];
+    if (!user) emptyFields.push(userNameInp);
+    if (!pass) emptyFields.push(password);
+    
+    // Пишем "Ничего нет", если поля пустые
+    showError("Ничего нет", emptyFields);
     return;
   }
 
-  // Если пуст только пароль
-  if (!pass) {
-    showError("Поле пароля не заполнено", password);
-    return;
-  }
-
-  // 3. ПРОВЕРКА ДАННЫХ (если поля заполнены)
-  
-  // Проверка стандартного админ-аккаунта
-  if (user === "user" && pass === "2422") {
+  // 3. ПРОВЕРКА ДАННЫХ
+  // Проверка твоего нового аккаунта: Morlac / 12345
+  if (user === "Morlac" && pass === "12345") {
     localStorage.setItem("gg_current_user", user);
     window.location.href = "Page2/index.html"; 
     return;
   }
 
-  // Проверка через базу данных (localStorage) для зарегистрированных
+  // Проверка через "базу данных" (localStorage) для остальных
   const users = JSON.parse(localStorage.getItem("gg_users") || "{}");
   
   if (users[user] && users[user] === pass) {
@@ -78,7 +70,7 @@ function clearErrors() {
   password.classList.remove("input-error");
 }
 
-// Дополнительно: убираем красную рамку сразу, как только пользователь начал что-то печатать
+// Убираем красную рамку сразу, когда пользователь начинает печатать
 [userNameInp, password].forEach(input => {
   input.addEventListener("input", () => {
     input.classList.remove("input-error");
