@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nameDisplay.textContent = `Hello, ${currentUser}`;
   }
 });
-// ===== ЭЛЕМЕНТЫ =====
+// ===== 2. ЭЛЕМЕНТЫ =====
 const o = document.querySelector(".o");
 const burgerMenu = document.querySelector(".burger-menu");
 const btnChat = document.getElementById("btnChat");
@@ -18,15 +18,12 @@ const m2 = document.getElementById("panelChat");
 const m3 = document.getElementById("panelNotif");
 const forSearch = document.querySelector(".for__search");
 const searchCont = document.querySelector(".search__cont");
-const launcherContainer = document.getElementById("launcherContainer");
-const settingsBtn = document.getElementById("settingsBtn");
 let burgerOpen = false;
 
 function closeAll() {
   if (m1) m1.style.display = "none";
   if (m2) m2.style.display = "none";
   if (m3) m3.style.display = "none";
-  if (launcherContainer) launcherContainer.style.display = "none";
 }
 
 // ===== БУРГЕР =====
@@ -37,7 +34,7 @@ burgerMenu.addEventListener("click", (e) => {
   o.classList.toggle("oo", burgerOpen);
 });
 
-// ===== ИКОНКИ ПАНЕЛЕЙ =====
+// ===== ИКОНКИ =====
 btnChat.addEventListener("click", (e) => {
   e.stopPropagation();
   const open = m2.style.display === "flex";
@@ -58,8 +55,8 @@ btnNotif.addEventListener("click", (e) => {
   closeAll();
   if (!open) {
     m3.style.display = "flex";
-    const b = document.querySelector(".img3__badge");
-    if (b) b.style.display = "none";
+    const badge = document.querySelector(".img3__badge");
+    if (badge) badge.style.display = "none";
     document
       .querySelectorAll(".m3__item--unread")
       .forEach((el) => el.classList.remove("m3__item--unread"));
@@ -72,9 +69,9 @@ btnNotif.addEventListener("click", (e) => {
 // ===== ПОИСК =====
 forSearch.addEventListener("focus", (e) => {
   e.stopPropagation();
-  const r = forSearch.getBoundingClientRect();
-  searchCont.style.top = r.bottom + 10 + "px";
-  searchCont.style.left = r.left + r.width / 2 + "px";
+  const rect = forSearch.getBoundingClientRect();
+  searchCont.style.top = rect.bottom + 10 + "px";
+  searchCont.style.left = rect.left + rect.width / 2 + "px";
   searchCont.style.transform = "translateX(-50%)";
   searchCont.style.display = "flex";
 });
@@ -89,38 +86,38 @@ forSearch.addEventListener("click", (e) => e.stopPropagation());
 searchCont.addEventListener("click", (e) => e.stopPropagation());
 
 const cards = document.querySelectorAll(".search__card");
-cards.forEach((c) => {
-  c.dataset.text = c.querySelector("p").textContent.trim();
+cards.forEach((card) => {
+  const p = card.querySelector("p");
+  if (p) card.dataset.text = p.textContent.trim();
 });
 
 forSearch.addEventListener("input", function () {
-  const v = this.value.trim().toLowerCase();
-  cards.forEach((c) => {
-    const el = c.querySelector("p");
-    const orig = c.dataset.text;
-    if (!v) {
-      c.classList.remove("hide");
-      el.innerHTML = orig;
+  const value = this.value.trim().toLowerCase();
+  cards.forEach((card) => {
+    const textEl = card.querySelector("p");
+    const orig = card.dataset.text;
+    if (!value) {
+      card.classList.remove("hide");
+      textEl.innerHTML = orig;
       return;
     }
-    const idx = orig.toLowerCase().indexOf(v);
+    const idx = orig.toLowerCase().indexOf(value);
     if (idx === -1) {
-      c.classList.add("hide");
+      card.classList.add("hide");
     } else {
-      c.classList.remove("hide");
-      el.innerHTML =
+      card.classList.remove("hide");
+      textEl.innerHTML =
         orig.slice(0, idx) +
-        `<span class="highlight">${orig.slice(idx, idx + v.length)}</span>` +
-        orig.slice(idx + v.length);
+        `<span class="highlight">${orig.slice(idx, idx + value.length)}</span>` +
+        orig.slice(idx + value.length);
     }
   });
 });
 
-// ===== ЗАКРЫТИЕ ПРИ КЛИКЕ СНАРУЖИ =====
-[m1, m2, m3, launcherContainer].forEach((p) => {
+// ===== ЗАКРЫТИЕ ПО КЛИКУ СНАРУЖИ =====
+[m1, m2, m3].forEach((p) => {
   if (p) p.addEventListener("click", (e) => e.stopPropagation());
 });
-
 o.addEventListener("click", (e) => e.stopPropagation());
 
 document.addEventListener("click", () => {
@@ -133,62 +130,67 @@ document.addEventListener("click", () => {
   }
 });
 
-// ===== ДАННЫЕ ИГР И ПОПАП =====
+// ===== ПОПАП ИГР =====
 const gameData = {
   search__card1: {
     title: "VALORANT",
-    cover: "https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S2_1200x1600-773ea2de7951435e977ba5f5f6934442?resize=1&w=720&h=480&quality=medium",
+    cover:
+      "https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S2_1200x1600-773ea2de7951435e977ba5f5f6934442?resize=1&w=720&h=480&quality=medium",
     badge: "Бесплатно",
-    tags: ["Шутер", "Экшен", "Мультиплеер"],
+    tags: ["Шутер", "Экшен", "Многопользовательская"],
     desc: "Тактический шутер 5 на 5 от Riot Games.",
     dev: "Riot Games",
     date: "03.06.2020",
     price: "Бесплатно",
-    link: "../Page4//index2.html",
+    link: "../Page4/index2.html",
   },
   search__card__2: {
     title: "Minecraft",
-    cover: "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg",
+    cover:
+      "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg",
     badge: "Платная",
     tags: ["Песочница", "Выживание", "Крафт"],
     desc: "Исследуйте бесконечные миры и стройте что угодно.",
     dev: "Mojang Studios",
     date: "18.11.2011",
     price: "1 900 ₽",
-    link: "../Page4//index6.html",
+    link: "../Page4/index6.html",
   },
   search__card__3: {
     title: "Dota 2",
-    cover: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1766010373",
+    cover:
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg?t=1766010373",
     badge: "Бесплатно",
-    tags: ["MOBA", "Стратегия"],
-    desc: "Самая глубокая многопользовательская стратегия.",
+    tags: ["MOBA", "Стратегия", "Командная"],
+    desc: "Самая глубокая многопользовательская стратегия в мире.",
     dev: "Valve",
     date: "09.07.2013",
     price: "Бесплатно",
-    link: "../Page4//index5.html",
+    link: "../Page4/index5.html",
   },
   search__card__4: {
     title: "Counter-Strike 2",
-    cover: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861",
+    cover:
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861",
     badge: "Бесплатно",
-    tags: ["Шутер", "Соревновательная"],
-    desc: "Крупнейший скачок в истории CS.",
+    tags: ["Шутер", "Экшен", "Соревновательная"],
+    desc: "Крупнейший технологический скачок в истории CS.",
     dev: "Valve",
     date: "27.09.2023",
     price: "Бесплатно",
-    link: "../Page4//index4.html",
+    link: "../Page4/index4.html",
   },
   search__card__5: {
     title: "Terraria",
-    cover: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1731252354",
+    cover:
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1731252354",
     badge: "Платная",
     tags: ["Песочница", "Выживание", "Крафт"],
-    desc: "Копайте, сражайтесь, стройте!",
+    desc: "Копайте, сражайтесь, исследуйте, стройте!",
     dev: "Re-Logic",
     date: "16.05.2011",
     price: "419 ₽",
-    link: "../Page4//index3.html",
+    link: "../Page4/index3.html",
   },
 };
 
@@ -206,6 +208,7 @@ function openGamePopup(cls) {
   document.getElementById("popupDate").textContent = d.date;
   document.getElementById("popupPrice").textContent = d.price;
   document.getElementById("popupLink").href = d.link;
+
   document.getElementById("popupTags").innerHTML = d.tags
     .map((t) => `<span class="game-popup__tag">${t}</span>`)
     .join("");
@@ -219,9 +222,9 @@ function closeGamePopup() {
 }
 
 Object.keys(gameData).forEach((cls) => {
-  const c = document.querySelector("." + cls);
-  if (!c) return;
-  c.addEventListener("click", (e) => {
+  const card = document.querySelector("." + cls);
+  if (!card) return;
+  card.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
     searchCont.style.display = "none";
@@ -230,21 +233,23 @@ Object.keys(gameData).forEach((cls) => {
 });
 
 if (popupClose) popupClose.addEventListener("click", closeGamePopup);
-if (overlay) overlay.addEventListener("click", (e) => {
-  if (e.target === overlay) closeGamePopup();
-});
+if (overlay) {
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeGamePopup();
+  });
+}
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeGamePopup();
 });
 
 // ===== УВЕДОМЛЕНИЯ =====
-const uc = document.querySelectorAll(".m3__item--unread").length;
-if (uc > 0 && btnNotif) {
-  const b = document.createElement("div");
-  b.className = "img3__badge";
-  b.textContent = uc;
-  btnNotif.appendChild(b);
+const unreadCount = document.querySelectorAll(".m3__item--unread").length;
+if (unreadCount > 0 && btnNotif) {
+  const badge = document.createElement("div");
+  badge.className = "img3__badge";
+  badge.textContent = unreadCount;
+  btnNotif.appendChild(badge);
 }
 
 const clearNotif = document.querySelector(".m3__clear");
@@ -273,8 +278,8 @@ document.querySelectorAll(".m2__chat-item").forEach((item) => {
     chatAvatar.innerHTML =
       item.dataset.avatarLetter +
       '<span class="m2__av-status m2__av-status--on"></span>';
-    const b = item.querySelector(".m2__unread-badge");
-    if (b) b.remove();
+    const badge = item.querySelector(".m2__unread-badge");
+    if (badge) badge.remove();
     item.classList.remove("m2__chat-item--unread");
     chatList.style.display = "none";
     chatOpen.style.display = "flex";
@@ -292,21 +297,21 @@ if (backBtn) {
 }
 
 function sendMessage() {
-  const t = chatInput.value.trim();
-  if (!t) return;
+  const text = chatInput.value.trim();
+  if (!text) return;
   const time = new Date().toTimeString().slice(0, 5);
   const msg = document.createElement("div");
   msg.className = "m2__msg m2__msg--out";
-  msg.innerHTML = `<p>${t}</p><span>${time}</span>`;
+  msg.innerHTML = `<p>${text}</p><span>${time}</span>`;
   chatMessages.appendChild(msg);
   chatMessages.scrollTop = chatMessages.scrollHeight;
   chatInput.value = "";
   setTimeout(() => {
-    const r = ["👍", "ок", "gg", "лол", "😂"];
-    const re = document.createElement("div");
-    re.className = "m2__msg m2__msg--in";
-    re.innerHTML = `<p>${r[Math.floor(Math.random() * r.length)]}</p><span>${time}</span>`;
-    chatMessages.appendChild(re);
+    const replies = ["👍", "ок", "понял", "gg", "лол", "да норм", "😂"];
+    const reply = document.createElement("div");
+    reply.className = "m2__msg m2__msg--in";
+    reply.innerHTML = `<p>${replies[Math.floor(Math.random() * replies.length)]}</p><span>${time}</span>`;
+    chatMessages.appendChild(reply);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }, 1200);
 }
@@ -327,26 +332,28 @@ if (chatInput) {
   });
 }
 
-// ===== ЛАУНЧЕР (НАСТРОЙКИ) =====
+// ===== НАСТРОЙКИ =====
+const settingsBtn = document.querySelector(".im8");
+const launcherContainer = document.getElementById("launcherContainer");
+const menuItems = document.querySelectorAll(".menu__item");
+const launcherSettings = document.querySelectorAll(".launcher__settings");
+
 if (settingsBtn) {
   settingsBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     if (launcherContainer.style.display === "block") {
       launcherContainer.style.display = "none";
-      return;
+    } else {
+      const rect = settingsBtn.getBoundingClientRect();
+      launcherContainer.style.display = "block";
+      const h = launcherContainer.offsetHeight;
+      let top = rect.top;
+      if (top + h > window.innerHeight - 20) top = window.innerHeight - h - 20;
+      launcherContainer.style.top = top + "px";
+      launcherContainer.style.left = rect.right + 12 + "px";
     }
-    const rect = settingsBtn.getBoundingClientRect();
-    launcherContainer.style.display = "block";
-    const h = launcherContainer.offsetHeight;
-    let top = rect.top;
-    if (top + h > window.innerHeight - 20) top = window.innerHeight - h - 20;
-    launcherContainer.style.top = top + "px";
-    launcherContainer.style.left = rect.right + 12 + "px";
   });
 }
-
-const menuItems = document.querySelectorAll(".menu__item");
-const launcherSettings = document.querySelectorAll(".launcher__settings");
 
 menuItems.forEach((item, idx) => {
   item.addEventListener("click", (e) => {
@@ -356,15 +363,16 @@ menuItems.forEach((item, idx) => {
       s.classList.remove("launcher__settings--active"),
     );
     item.classList.add("menu__item-active");
-    launcherSettings[idx].classList.add("launcher__settings--active");
+    if (launcherSettings[idx]) {
+      launcherSettings[idx].classList.add("launcher__settings--active");
+    }
   });
 });
 
-// Инициализация первой вкладки настроек
-if (menuItems.length > 0) {
-  menuItems[0].classList.add("menu__item-active");
+// Настройки по умолчанию
+if (menuItems[0]) menuItems[0].classList.add("menu__item-active");
+if (launcherSettings[0])
   launcherSettings[0].classList.add("launcher__settings--active");
-}
 
 const saveBtn = document.querySelector(".action__button--save");
 if (saveBtn) {
@@ -374,7 +382,6 @@ if (saveBtn) {
   });
 }
 
-const resetBtn = document.querySelector(".action__button--reset");
-if (resetBtn) {
-  resetBtn.addEventListener("click", (e) => e.stopPropagation());
+if (launcherContainer) {
+  launcherContainer.addEventListener("click", (e) => e.stopPropagation());
 }
